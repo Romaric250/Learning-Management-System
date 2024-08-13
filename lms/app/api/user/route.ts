@@ -81,3 +81,28 @@ export async function PUT(req:Request){
         
     }
 }
+
+export async function DELETE(req:Request){
+    try {
+
+        const {userId} = await req.json()
+
+        if(!userId){
+            return new NextResponse("Please provide a user id", {status:400})
+        }
+
+        const deleteUser = await db.user.delete({
+            where:{
+                id:userId as string
+            }
+        })
+
+        return new NextResponse(JSON.stringify(deleteUser), {status:200})
+        
+
+    } catch (error:any) {
+        console.log(error.message)
+        return new NextResponse("An internal server error occured", {status:500})
+        
+    }
+}
