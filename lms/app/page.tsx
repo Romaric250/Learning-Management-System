@@ -77,7 +77,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
-import { useEffect } from "react"
+import { useEffect,useState } from "react"
 
 
 
@@ -86,25 +86,37 @@ import { useEffect } from "react"
 
 
 const Dashboard = () =>{
-const user = "User"
+ const [user, setUser] = useState("ROAMRIC");
 
 
-useEffect(() => {
 
-  console.log("User", user)
+  useEffect(() => {
+    console.log("User", user);
 
-  if(user) {
-    return <> something went wrong</>
-  }
-    
-}, [])
+
+    if (user) {
+      console.error("Something went wrong");
+    }
+  }, [user]);
+
+
+if(user){
+  return (
+    <div className="flex min-h-screen w-full flex-col bg-muted/40">
+      {user &&  <div> {user} </div>}
+      </div>
+  )
+}
 
 
 
 
 
   return (
+
+    
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
+      {user &&  <div> {user} </div>}
       <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
         <nav className="flex flex-col items-center gap-4 px-2 sm:py-5">
           <Link
