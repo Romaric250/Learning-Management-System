@@ -76,7 +76,7 @@ export async function PUT(req:Request){
         return new NextResponse(JSON.stringify(updateUser), {status:200})
         
     } catch (error:any) {
-        console.log(error.message)
+        console.log(error)
         return new NextResponse("An internal server error occured", {status:500})
         
     }
@@ -101,7 +101,7 @@ export async function DELETE(req:Request){
         
 
     } catch (error:any) {
-        console.log(error.message)
+        console.log(error)
         return new NextResponse("An internal server error occured", {status:500})
         
     }
