@@ -38,7 +38,8 @@ export async function POST(req:Request){
         const createUser = await db.user.create({
             data:{
                 name,
-                email
+                email,
+                password
                 
             }
         })
