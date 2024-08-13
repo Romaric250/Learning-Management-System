@@ -6,10 +6,7 @@ import { db } from "@/lib/db";
 
 export async function GET(req:Request){
     try {
-
-
         const getusers = await db.user.findMany()
-
 
     if(!getusers){
         return new NextResponse("No user found", {status:404})
@@ -17,15 +14,13 @@ export async function GET(req:Request){
 
     return new NextResponse(JSON.stringify(getusers), {status:200})
 
-
         
     } catch (error:any) {
-        console.log(error.message)
+        console.log(error)
         return new NextResponse("An internal server error occured", {status:500})
         
     }
 }
-
 
 export async function POST(req:Request){
     try {
@@ -38,20 +33,19 @@ export async function POST(req:Request){
         const createUser = await db.user.create({
             data:{
                 name,
-                email,
-                
-                
+                email,        
             }
         })
 
         return new NextResponse(JSON.stringify(createUser), {status:201})
         
     } catch (error:any) {
-        console.log(error.message)
+        console.log(error)
         return new NextResponse("An internal server error occured", {status:500})
         
     }
 }
+
 
 export async function PUT(req:Request){
     try {
@@ -81,6 +75,7 @@ export async function PUT(req:Request){
         
     }
 }
+
 
 export async function DELETE(req:Request){
     try {
