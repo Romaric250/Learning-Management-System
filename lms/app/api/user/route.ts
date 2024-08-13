@@ -52,3 +52,32 @@ export async function POST(req:Request){
         
     }
 }
+
+export async function PUT(req:Request){
+    try {
+        const {name, email, userId} = await req.json()
+
+        if(!name || !email){
+            return new NextResponse("Please fill in all fields", {status:400})
+        }
+
+        const updateUser = await db.user.update({
+            where:{
+                id:userId as string 
+            },
+            data:{
+                name,
+                email,
+                
+                
+            }
+        })
+
+        return new NextResponse(JSON.stringify(updateUser), {status:200})
+        
+    } catch (error:any) {
+        console.log(error.message)
+        return new NextResponse("An internal server error occured", {status:500})
+        
+    }
+}
